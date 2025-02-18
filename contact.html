@@ -290,5 +290,70 @@
     <script src="js/typed.js"></script>
 
     <script src="js/custom.js"></script>
+    <script>
 
+      document.addEventListener("DOMContentLoaded", () => {
+
+        const form = document.querySelector('.contact-form')
+
+        form.addEventListener('submit', (e) => {
+          e.preventDefault()
+          //get the input values
+          let fname = e.target.fname
+          let lname = e.target.lname
+          let msg = e.target.message
+          let email = e.target.email
+          const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+          let errorbox = document.querySelector('.d-none.alert.text-danger')
+
+
+          if (fname.value === '') {
+            errorbox.classList.remove('d-none')
+            fname.classList.add('border', 'border-danger')
+          }
+          if (lname.value === '') {
+            errorbox.classList.remove('d-none')
+            lname.classList.add('border', 'border-danger')
+          }
+          if (!email.value.match(regex)) {
+            errorbox.classList.remove('d-none')
+            email.classList.add('border', 'border-danger')
+          }
+          if (email.value === '') {
+            errorbox.classList.remove('d-none')
+            email.classList.add('border', 'border-danger')
+          }
+          if (message.value === '') {
+            errorbox.classList.remove('d-none')
+            message.classList.add('border', 'border-danger')
+          }
+
+          setTimeout(() => {
+            cleanUP()
+          }, 3000)
+
+
+
+
+
+        })
+
+        function cleanUP() {
+          let errorbox = document.querySelector('.alert.text-danger')
+          errorbox.classList.add('d-none')
+
+          let erros = document.querySelectorAll('.border-danger')
+
+          erros.forEach(er => {
+            if (er.classList.contains('border') && er.classList.contains('border-danger')) {
+              er.classList.remove('border', 'border-danger')
+            }
+          })
+        }
+
+
+      })
+
+    </script>
+    
 </html>
